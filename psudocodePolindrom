@@ -1,0 +1,36 @@
+program palindrome
+{Program yang memiliki 1 inputan
+menggunakan scanner package/library bufio(user input)
+apakah palindrome atau bukan.}
+kamus
+    scanner: bufio.Scanner
+    input: string
+algoritma
+    scanner ← createScanner(os.Stdin)
+    input ← scanner.Scan()
+
+    if isPalindrome(input) then
+        output("Palindrome")
+    else
+        output("Bukan Palindrome")
+endprogram
+
+function isPalindrome(s: string) → boolean
+{1 input parameter (string), 1 output parameter (boolean).}
+kamus
+    re: regexp.Regexp
+    s: string
+    char: integer
+    reversed: string
+    result: boolean
+algoritma
+    re ← regex("[^a-zA-Z0-9]+")
+    s ← re.ReplaceAllString(s, "")
+    s ← toLowerCase(s)
+
+    reversed ← ""
+    for each char in s:
+        reversed ← char + reversed
+    result ← s == reversed
+    return result
+endfunction
